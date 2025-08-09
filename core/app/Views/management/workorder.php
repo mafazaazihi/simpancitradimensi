@@ -44,6 +44,7 @@
                                                         <td><?= $m['Duedate']; ?></td>
                                                         <td><?= $m['Periodname']; ?></td>
                                                         <td>
+                                                            <a href="<?= base_url('managements/createworeport/') . $m['Taskid']; ?>" class="btn btn-xs btn-success typcn typcn-pencil" title="Create report" target="#blank"></a>
                                                             <a href="" class="btn btn-xs btn-info typcn typcn-info-large" data-bs-toggle="modal" title="Details" data-bs-target="#detailwoModal"></a>
                                                             <a href="<?= base_url('managements/woreport/') . $m['Taskid']; ?>" class="btn btn-xs btn-info typcn typcn-printer" title="Print" target="#blank"></a>
                                                         </td>

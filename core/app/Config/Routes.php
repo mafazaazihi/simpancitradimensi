@@ -47,11 +47,13 @@ $routes->post('ajax/getpartlike', 'Ajaxcall::getpartlike');
 $routes->post('ajax/rejectpart', 'Ajaxcall::rejectpart');
 $routes->post('ajax/approvewo', 'Ajaxcall::approvewo');
 $routes->post('ajax/changetskduedate', 'Ajaxcall::changetskduedate');
+$routes->post('ajax/assigntask', 'Ajaxcall::assigntask');
 $routes->get('ajax/pmcalendar', 'Ajaxcall::pmcalendar');
 //api
 $routes->get('api/pmcalendar', 'Restfull::getpmcalendar');
 //management group
 $routes->get('managements/', 'Management::index', ['filter' => 'login']);
+$routes->get('managements/(:alpha)', 'Management::index/$1', ['filter' => 'login']);
 $routes->get('managements/equipment', 'Management::equipment', ['filter' => 'login']);
 $routes->post('managements/equipment', 'Management::equipment', ['filter' => 'login']);
 $routes->get('managements/supplier', 'Management::supplier', ['filter' => 'login']);
@@ -66,6 +68,7 @@ $routes->post('managements/sparepart', 'Management::sparepart', ['filter' => 'lo
 $routes->get('managements/sparepart', 'Management::sparepart', ['filter' => 'login']);
 $routes->get('managements/woreport/(:num)', 'Management::woreport/$1', ['filter' => 'login']);
 $routes->get('managements/approvewo/(:num)', 'Management::approvewo/$1', ['filter' => 'login']);
+$routes->get('managements/createworeport/(:num)', 'Management::createworeport/$1', ['filter' => 'login']);
 
 //task group
 $routes->get('task/', 'Task::index', ['filter' => 'login']);

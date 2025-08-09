@@ -17,6 +17,7 @@
                                             <tr>
                                                 <th>Items</th>
                                                 <th>Recomended</th>
+                                                <th>Part Recomended</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -25,6 +26,7 @@
                                                 <tr id="<?= $m['Checklistid']; ?>">
                                                     <td><?= $m['Name']; ?></td>
                                                     <td><?= $m['Recomended']; ?></td>
+                                                    <td><?= $m['Partrecom']; ?></td>
                                                     <td><a href="" class="btn btn-xs btn-info typcn typcn-info-large" data-bs-toggle="modal" title="Details" data-bs-target="#detailitmModal"></a></td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -45,6 +47,7 @@
                                         <tr>
                                             <td><input class="form-control form-control-sm type=" text" name="check[]" class="input-text" id="check[]" placeholder="Enter Checklist"></td>
                                             <td><input class="form-control form-control-sm name=" recomended[]" class="input-text" id="recomended[]" placeholder="Enter recomended"></td>
+                                            <td><input class="form-control form-control-sm name=" part[]" class="input-text" id="part[]" placeholder="Part recomended"></td>
                                             <td><button type="button" name="add" id="add" class="btn btn-success btn-sm" title="Add More">+</button></td>
                                         </tr>
                                     </table>
@@ -54,7 +57,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Add checklist</h5>
@@ -67,6 +70,7 @@
                                         <tr>
                                             <td><input class="form-control form-control-sm" type="text" name="check[]" class="input-text" id="check[]" placeholder="Enter Checklist"></td>
                                             <td><input class="form-control form-control-sm" type="text" name="recomended[]" class="input-text" id="recomended[]" placeholder="Enter recomended"></td>
+                                            <td><input class="form-control form-control-sm" type="text" name="part[]" class="input-text" id="part[]" placeholder="Part recomended"></td>
                                             <td><button type="button" name="add" id="add" class="btn btn-success btn-sm" title="Add More">+</button></td>
                                         </tr>
                                     </table>
@@ -99,6 +103,10 @@
                                     <div class="form-floating form-floating-sm mb-2">
                                         <input type="text" class="form-control form-control-sm" id="erecomended" name="erecomended" required placeholder="name@example.com" require readonly>
                                         <label for="erecomended">Recomendation</label>
+                                    </div>
+                                    <div class="form-floating form-floating-sm mb-2">
+                                        <input type="text" class="form-control form-control-sm" id="epartrecom" name="epartrecom" required placeholder="name@example.com" require readonly>
+                                        <label for="epartrecom">Part Recomendation</label>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

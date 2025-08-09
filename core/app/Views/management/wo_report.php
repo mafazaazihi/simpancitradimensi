@@ -64,12 +64,14 @@
                         <?php endif; ?>
                     </div>
                     <div class="col-2">
-                        <p><strong>Tipe:</strong></p>
                         <p><strong>Engineer:</strong></p>
+                        <p><strong>Supervisor:</strong></p>
+                        <p><strong>Tipe:</strong></p>
                     </div>
                     <div class="col-2">
-                        <p><?= $cat['Categoryname']; ?>.</p>
                         <p><?= $task['AssignTo']; ?>.</p>
+                        <p><?= $task['Supervisor']; ?>.</p>
+                        <p><?= $cat['Categoryname']; ?>.</p>
                     </div>
                 </div>
                 <hr>
@@ -89,6 +91,7 @@
                                     <tr>
                                         <td><strong>Item</strong></td>
                                         <td class="text-center"><strong>Recomended</strong></td>
+                                        <td class="text-center"><strong>Part Recomended</strong></td>
                                         <td class="text-center"><strong>Actual</strong></td>
                                     </tr>
                                 </thead>
@@ -97,6 +100,7 @@
                                         <tr>
                                             <td><?= $c['Name']; ?></td>
                                             <td class="text-center"><?= $c['Recomended']; ?></td>
+                                            <td class="text-center"><?= $c['Partrecom']; ?></td>
                                             <td class="text-center"></td>
                                         </tr>
                                     <?php endforeach; ?>

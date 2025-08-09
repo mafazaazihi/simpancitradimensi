@@ -44,11 +44,14 @@ class Management extends BaseController
         $this->tdetail = new TaskdetailModel();
         $this->cmdetail = new CmdetailModel();
     }
-    public function index()
+    public function index($id = null)
     {
+        if($id=='lsw')
         $data['title'] = 'Maintenanace Calendar';
         $data['prof'] = profile();
         $data['sch'] = $this->task->get_work_open();
+        $data['scho'] = $this->task->whereIn('Status', [0, 1, 2])->findAll();
+        $data['backlog'] = $this->task->get_work_openbl();
         $data['pend'] = $this->task->get_work_pend();
         $data['close'] = $this->task->get_work_closed();
         $data['inpro'] = $this->task->get_work_inrpo();
@@ -215,7 +218,8 @@ class Management extends BaseController
             $data = [
                 'Checklistid' => $this->request->getPost('checkid'),
                 'Name' => $this->request->getPost('echeck'),
-                'Recomended' => $this->request->getPost('erecomended')
+                'Recomended' => $this->request->getPost('erecomended'),
+                'Partrecom' => $this->request->getPost('epartrecom'),
             ];
 
             $this->check->save($data);
@@ -230,7 +234,8 @@ class Management extends BaseController
                 $data[] = array(
                     'Type_id' => $type,
                     'Name' => $_POST['check'][$key],
-                    'Recomended' => $_POST['recomended'][$key]
+                    'Recomended' => $_POST['recomended'][$key],
+                    'Partrecom' => $_POST['part'][$key]
                 );
             }
             $this->check->insertBtach($data);
@@ -421,6 +426,24 @@ class Management extends BaseController
             $data['equip'] = $this->equipment->findAll();
             $data['prof'] = profile();
             return render_templatex('management/sparepart', $data);
+        }
+    }
+
+    public function createworeport($id)
+    {
+        $data['title'] = 'Work orders# ' . $id;
+        $data['prof'] = profile();
+        $data['id'] = $id;
+        $data['usage'] = $this->usage->get_usage($id);
+        $task = $this->task->find($id);
+        $data['eng'] = $this->user->where('Role_id', 2)->findAll();
+        $data['spv'] = $this->user->where('Role_id', 4)->findAll();
+        $data['task'] = $task;
+        $data['check'] = $this->check->where('Type_id', $task['Type_id'])->findAll();
+        if ($task['TaskType'] == 3) {
+            return render_templatex('management/taskcm', $data);
+        } else {
+            return render_templatex('management/pmreport', $data);
         }
     }
 }

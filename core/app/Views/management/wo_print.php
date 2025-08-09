@@ -67,9 +67,11 @@
                     </div>
                     <div class="col">
                         <p><strong>Engineer:</strong></p>
+                        <p><strong>Supervisor:</strong></p>
                     </div>
                     <div class="col">
                         <p><?= $task['AssignTo']; ?></p>
+                        <p><?= $task['Supervisor']; ?></p>
                     </div>
                 </div>
                 <hr>
@@ -87,6 +89,7 @@
                                     <tr>
                                         <td><strong>Item</strong></td>
                                         <td class="text-center"><strong>Recomended</strong></td>
+                                        <td class="text-center"><strong>Part Recomended</strong></td>
                                         <td class="text-center"><strong>Actual</strong></td>
                                     </tr>
                                 </thead>
@@ -95,6 +98,7 @@
                                         <tr>
                                             <td><?= $c['ChecklistName']; ?></td>
                                             <td class="text-center"><?= $c['Recomended']; ?></td>
+                                            <td class="text-center"><?= $c['Partrecom']; ?></td>
                                             <td class="text-center"><?= $c['Actual']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
