@@ -41,6 +41,7 @@ class Auth extends BaseController
                     ];
                     $this->UserModel->save($date);
                     session()->set($s_data);
+                    $this->send_mail($udata['Email']);
                     success_message('Wellcome buddy');
                     return redirect_to($role['Defaultpage']);
                 } else {
@@ -82,5 +83,25 @@ class Auth extends BaseController
                 . view('auth/resetpass', $data)
                 . view('template/auth_f');
         }
+    }
+    private function send_mail($mail)
+    {
+        $html = '<!DOCTYPE html>
+                <html>
+                <head>
+                <title>Page Title</title>
+                </head>
+                <body>
+
+                <h1>This is a Heading</h1>
+                <p>This is a paragraph.</p>
+
+                </body>
+                </html>';
+        $email = Services::email();
+        $email->setFrom('system');
+        $email->setTo($email);
+        $email->setSubject('Test');
+        $email->setMessage($html);
     }
 }
