@@ -44,17 +44,38 @@ class Management extends BaseController
         $this->tdetail = new TaskdetailModel();
         $this->cmdetail = new CmdetailModel();
     }
-    public function index($id = null)
+    public function index() {}
+    public function calendar($id = null)
     {
-        if($id=='lsw')
+        if ($id == 'lsw') {
+            $lsw = date('W', strtotime(curr_date())) - 1;
+            $year = date('Y', strtotime(curr_date()));
+            $data['scho'] = $this->task->where(['Status !=' => 3, 'WEEK(Duedate)' => $lsw, 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+            $data['backlog'] = $this->task->where(['Status ' => 0, 'WEEK(Duedate)' => $lsw, 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+            $data['close'] = $this->task->where(['Status ' => 3, 'WEEK(Duedate)' => $lsw, 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+        } elseif ($id == 'tsw') {
+            $tsw = date('W', strtotime(curr_date()));
+            $year = date('Y', strtotime(curr_date()));
+            $data['scho'] = $this->task->where(['Status !=' => 3, 'WEEK(Duedate)' => $tsw, 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+            $data['backlog'] = $this->task->where(['Status ' => 0, 'WEEK(Duedate)' => $tsw, 'Duedate <' => date('Y-m-d'), 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+            $data['close'] = $this->task->where(['Status ' => 3, 'WEEK(Duedate)' => $tsw, 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+        } elseif ($id == 'tsm') {
+            $tsm = date('m', strtotime(curr_date()));
+            $year = date('Y', strtotime(curr_date()));
+            $data['scho'] = $this->task->where(['Status !=' => 3, 'MONTH(Duedate)' => $tsm, 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+            $data['backlog'] = $this->task->where(['Status ' => 0, 'MONTH(Duedate)' => $tsm, 'Duedate <' => date('Y-m-d'), 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+            $data['close'] = $this->task->where(['Status ' => 3, 'MONTH(Duedate)' => $tsm, 'YEAR(Duedate)' => $year, 'TaskType' => 2])->findAll();
+        } else {
+            $date = date('Y-m-d');
+            $data['scho'] = $this->task->where(['Status !=' => 3, 'TaskType' => 2])->findAll();
+            $data['backlog'] = $this->task->where(['Status ' => 0, 'Duedate <' => $date, 'TaskType' => 2])->findAll();
+            $data['close'] = $this->task->get_work_closed();
+        }
+        $data['pend'] = $this->task->get_work_pend();
+        $data['sch'] = $this->task->get_work_open();
+        $data['inpro'] = $this->task->get_work_inrpo();
         $data['title'] = 'Maintenanace Calendar';
         $data['prof'] = profile();
-        $data['sch'] = $this->task->get_work_open();
-        $data['scho'] = $this->task->whereIn('Status', [0, 1, 2])->findAll();
-        $data['backlog'] = $this->task->get_work_openbl();
-        $data['pend'] = $this->task->get_work_pend();
-        $data['close'] = $this->task->get_work_closed();
-        $data['inpro'] = $this->task->get_work_inrpo();
         return render_templatex('management/index', $data);
     }
     public function equipment()
