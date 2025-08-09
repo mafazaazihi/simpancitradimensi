@@ -295,11 +295,28 @@ class Ajaxcall extends BaseController
                 'Task_id' => $tableData[$x]['Taskid'],
                 'ChecklistName' => $tableData[$x]['Checklist Item'],
                 'Actual' =>  $tableData[$x]['Actual'],
-                'Recomended' => $tableData[$x]['Recomended']
+                'Recomended' => $tableData[$x]['Recomended'],
+                'Partrecom' => $tableData[$x]['Part recomended']
             );
             array_push($columns, $row);
         }
         $this->taskd->insertBtach($columns);
+    }
+
+    public function assigntask()
+    {
+        if ($this->request->getPost('spv')) {
+            $data = [
+                'Taskid' => $this->request->getPost('taskid'),
+                'Supervisor' => $this->request->getPost('spv')
+            ];
+        } else {
+            $data = [
+                'Taskid' => $this->request->getPost('taskid'),
+                'AssignTo' => $this->request->getPost('eng')
+            ];
+        }
+        $this->task->save($data);
     }
 
     function new_task($data)

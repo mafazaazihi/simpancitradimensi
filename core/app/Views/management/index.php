@@ -311,3 +311,50 @@
         });
     })
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var openpm = '<?= count($scho); ?>',
+            closedpm = '<?= count($close); ?>',
+            backlog = '<?= count($backlog); ?>';
+        var salesChartCCanvas = $("#sales-chart-x").get(0).getContext("2d");
+        var salesChartC = new Chart(salesChartCCanvas, {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: [openpm, closedpm, backlog],
+                    backgroundColor: [
+                        '#5DE2E7',
+                        '#7DDA58',
+                        '#E4080A'
+                    ],
+                    borderColor: [
+                        '#5DE2E7',
+                        '#7DDA58',
+                        '#E4080A'
+                    ],
+                    legend: false,
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'Open',
+                    'Closed',
+                    'Backlog'
+                ]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                }
+            }
+        });
+    })
+</script>

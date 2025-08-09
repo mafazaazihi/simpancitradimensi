@@ -84,3 +84,12 @@ function notif($req = null)
         return '<span class="badge text-bg-danger">' . count($req) . '</span>';
     }
 }
+
+function buttontaskcm($status, $taskid)
+{
+    if ($status == 0) {
+        return '<a href="' . base_url('task/' . $taskid) . '" class="btn btn-xs btn-success typcn typcn-pencil" title="Create report" target="#blank"></a>';
+    } else {
+        return '<a href="' . base_url('managements/approvewo/' . $taskid) . '" class="btn btn-xs btn-info typcn typcn-thumbs-up" title="Create report" target="#blank"></a>';
+    }
+}

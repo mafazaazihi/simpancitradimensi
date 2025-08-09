@@ -12,7 +12,7 @@ class ChecklistModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['Checklistid', 'Type_id', 'Name', 'Recomended'];
+    protected $allowedFields    = ['Checklistid', 'Type_id', 'Name', 'Recomended', 'Partrecom'];
 
     public function insertBtach($data)
     {

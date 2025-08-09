@@ -109,7 +109,7 @@
                                                         <td><?= $m['Notes']; ?></td>
                                                         <td><?= $m['Created']; ?></td>
                                                         <td>
-                                                            <a href="<?= base_url('task/') . $m['Taskid']; ?>" class="btn btn-xs btn-success typcn typcn-pencil" title="Create report" target="#blank"></a>
+                                                            <?= buttontaskcm($m['Status'], $m['Taskid']); ?>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
