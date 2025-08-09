@@ -102,9 +102,9 @@
                                             Annual
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
-                                            <a class="dropdown-item" href="<?= base_url('managements/lsw'); ?>">Last week</a>
-                                            <a class="dropdown-item" href="<?= base_url('managements/tsw'); ?>">This week</a>
-                                            <a class="dropdown-item" href="<?= base_url('managements/tsm'); ?>">This month</a>
+                                            <a class="dropdown-item" href="<?= base_url('managements/calendar/lsw'); ?>">Last week</a>
+                                            <a class="dropdown-item" href="<?= base_url('managements/calendar/tsw'); ?>">This week</a>
+                                            <a class="dropdown-item" href="<?= base_url('managements/calendar/tsm'); ?>">This month</a>
                                         </div>
                                     </div>
                                 </div>
