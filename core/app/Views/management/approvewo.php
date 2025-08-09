@@ -48,9 +48,11 @@
                                     </div>
                                     <div class="col">
                                         <p><strong>Engineer:</strong></p>
+                                        <p><strong>Supervisor:</strong></p>
                                     </div>
                                     <div class="col">
-                                        <p><?= $task['AssignTo']; ?></p>
+                                        <p><?= getperson($task['AssignTo']); ?></p>
+                                        <p><?= getperson($task['Supervisor']); ?></p>
                                     </div>
                                 </div>
                                 <hr>

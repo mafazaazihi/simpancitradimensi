@@ -5,7 +5,7 @@
     proto= cururl.protocol,
     host=cururl.hostname,
     pathx=cururl.pathname,
-    urlx= new URL(proto+'//'+host+'/simpanci4/');
+    urlx= new URL(proto+'//'+host+'/simpancitradimensi/');
     $('#table1').DataTable({
     responsive: true,
     layout: {
@@ -173,6 +173,54 @@
         }).then(()=>{
           location.reload()
         })
+      }
+    })
+  });
+  $('.engpm').on('change',function(){
+    var taskid=$('#taskid').val(),
+        eng=$('#engpm').val();
+    $.ajax({
+      url:urlx+'ajax/assigntask',
+      type:'post',
+      data:{
+        taskid:taskid,
+        eng:eng
+      },
+      success:function(){
+        Swal.fire({
+          text: "Engineer saved",
+          icon: "success"
+        });
+      },
+      error:function(){
+        Swal.fire({
+          text: "Please try again something went wrong",
+          icon: "warning"
+        });
+      }
+    })
+  });
+  $('.spvpm').on('change',function(){
+    var taskid=$('#taskid').val(),
+        eng=$('#spvpm').val();
+    $.ajax({
+      url:urlx+'ajax/assigntask',
+      type:'post',
+      data:{
+        taskid:taskid,
+        spv:eng
+      },
+      success:function(){
+        Swal.fire({
+          text: "Engineer saved",
+          icon: "success"
+        });
+      },
+      error:function(){
+        Swal.fire({
+          text: "Please try again something went wrong",
+          icon: "warning"
+        });
       }
     })
   });
@@ -428,7 +476,7 @@
 
         $('#add').click(function() {
             i++;
-            $('#dynamic_field').append('<tr id="row' + i + '" class="dynamic-added"><td><input class="form-control form-control-sm type="text" name="check[]" class="input-text" id="check[]" placeholder="Enter Checklist"></td><td><input class="form-control form-control-sm type="text" name="recomended[]" class="input-text" id="recomended[]" placeholder="Enter recomended"></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove btn-sm"  title="Remove">x</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row' + i + '" class="dynamic-added"><td><input class="form-control form-control-sm type="text" name="check[]" class="input-text" id="check[]" placeholder="Enter Checklist"></td><td><input class="form-control form-control-sm type="text" name="recomended[]" class="input-text" id="recomended[]" placeholder="Enter recomended"></td><td><input class="form-control form-control-sm" type="text" name="part[]" class="input-text" id="part[]" placeholder="Part recomended"></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove btn-sm"  title="Remove">x</button></td></tr>');
         });
         $(document).on('click', '.btn_remove', function() {
             var button_id = $(this).attr("id");
@@ -439,10 +487,12 @@
     $('#detailitmModal').on('show.bs.modal',function(){
       var check=$(event.target).closest('tr').find('td:eq(0)').text(),
       reco=$(event.target).closest('tr').find('td:eq(1)').text(),
+      part=$(event.target).closest('tr').find('td:eq(2)').text(),
       id=$(event.target).closest('tr').attr('id');
       document.getElementById('echeck').value=check;
       document.getElementById('checkid').value=id;
       document.getElementById('erecomended').value=reco;
+      document.getElementById('epartrecom').value=part;
     })
   });
   $(document).ready(function(){
@@ -739,7 +789,7 @@
                                           text:'Report created and saved',
                                           icon:'success'
                                         }),
-                                        document.location.href = urlx+'task/';
+                                        document.location.href = urlx+'managements/workorder';
                                     },
                                     error: function() {
                                         alert('Error eror', Response);

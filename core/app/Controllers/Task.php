@@ -14,6 +14,7 @@ use App\Models\SupplierModel;
 use App\Models\ChecklistModel;
 use App\Models\CmdetailModel;
 use App\Models\PartusageModel;
+use App\Models\RoleModel;
 use App\Models\TypecheckModel;
 use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -36,6 +37,7 @@ class Task extends BaseController
         $this->usage = new PartusageModel();
         $this->stock = new PartstockModel();
         $this->cmdetail = new CmdetailModel();
+        $this->role = new RoleModel();
     }
     public function index($id = null)
     {
@@ -75,8 +77,9 @@ class Task extends BaseController
 
             $data['title'] = 'Work orders';
             $data['prof'] = profile();
+            $role = $this->role->find(session()->get('roleid'));
             $data['tasko'] = $this->task->get_work_openua();
-            $data['taskcm'] = $this->task->taskcmopen();
+            $data['taskcm'] = $this->task->taskcmopen($role['Rolename']);
             $data['taskc'] = $this->task->get_work_closedua();
             $data['cat'] = $this->category->findAll();
             $data['eng'] = $this->user->where('Role_id', 2)->findAll();
@@ -122,7 +125,8 @@ class Task extends BaseController
                 'Notes' => $this->request->getPost('problem'),
                 'Priority' => $this->request->getPost('priority'),
                 'TaskType' => 3,
-                'AssignTo' => $this->request->getPost('eng')
+                'AssignTo' => $this->request->getPost('eng'),
+                'Supervisor' => session()->get('uid')
             ];
 
             $this->task->save($data);
