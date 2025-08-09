@@ -52,6 +52,14 @@ function equipmentname($id)
     $data = $builder->get()->getRowArray();
     return $data['Equipmentname'];
 }
+function categoryname($id)
+{
+    $db = \Config\Database::connect();
+    $builder = $db->table('maintcategory');
+    $builder->where('Maintcategoryid', $id);
+    $data = $builder->get()->getRowArray();
+    return $data['Categoryname'];
+}
 
 function dateonly($d, $d2 = null)
 {

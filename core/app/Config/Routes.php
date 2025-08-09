@@ -53,7 +53,8 @@ $routes->get('ajax/pmcalendar', 'Ajaxcall::pmcalendar');
 $routes->get('api/pmcalendar', 'Restfull::getpmcalendar');
 //management group
 $routes->get('managements/', 'Management::index', ['filter' => 'login']);
-$routes->get('managements/(:alpha)', 'Management::index/$1', ['filter' => 'login']);
+$routes->get('managements/calendar', 'Management::calendar', ['filter' => 'login']);
+$routes->get('managements/calendar/(:alpha)', 'Management::calendar/$1', ['filter' => 'login']);
 $routes->get('managements/equipment', 'Management::equipment', ['filter' => 'login']);
 $routes->post('managements/equipment', 'Management::equipment', ['filter' => 'login']);
 $routes->get('managements/supplier', 'Management::supplier', ['filter' => 'login']);

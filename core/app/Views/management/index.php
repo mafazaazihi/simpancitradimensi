@@ -185,8 +185,8 @@
                                     <tbody>
                                         <?php foreach ($backlog as $m): ?>
                                             <tr id="<?= $m['Taskid']; ?>">
-                                                <td><?= $m['Equipmentname']; ?></td>
-                                                <td><?= $m['Categoryname']; ?></td>
+                                                <td><?= equipmentname($m['Equipment_id']); ?></td>
+                                                <td><?= categoryname($m['TaskType']); ?></td>
                                                 <td><?= dateonly($m['Duedate'], $m['Created']); ?></td>
                                                 <td>
                                                     <a href="<?= base_url('managements/approvewo/') . $m['Taskid']; ?>" class="btn btn-xs btn-success typcn typcn-thumbs-up" title="Approve work order" target="#blank"></a>
