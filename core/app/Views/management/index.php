@@ -118,21 +118,21 @@
                                         <p class="text-muted">Open</p>
                                         <h5><?= count($scho); ?></h5>
                                         <div class="d-flex align-items-baseline">
-                                            <p class="text-info mb-0"><?= round((count($scho) / (count($scho) + count($close) + count($backlog))) * 100); ?>%</p>
+                                            <p class="text-info mb-0"><?= $scho ? round((count($scho) / (count($scho) + count($close) + count($backlog))) * 100) : 0; ?>%</p>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <p class="text-muted">Closed</p>
                                         <h5><?= count($close); ?></h5>
                                         <div class="d-flex align-items-baseline">
-                                            <p class="text-success mb-0"><?= round((count($close) / (count($scho) + count($close) + count($backlog))) * 100); ?>%</p>
+                                            <p class="text-success mb-0"><?= $close ? round((count($close) / (count($scho) + count($close) + count($backlog))) * 100) : 0; ?>%</p>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <p class="text-muted">Backlog</p>
                                         <h5><?= count($backlog); ?></h5>
                                         <div class="d-flex align-items-baseline">
-                                            <p class="text-danger mb-0"><?= round((count($backlog) / (count($scho) + count($close) + count($backlog))) * 100); ?>%</p>
+                                            <p class="text-danger mb-0"><?= $backlog ? round((count($backlog) / (count($scho) + count($close) + count($backlog))) * 100) : 0; ?>%</p>
                                         </div>
                                     </div>
                                 </div>
@@ -314,9 +314,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        var openpm = '<?= count($scho); ?>',
-            closedpm = '<?= count($close); ?>',
-            backlog = '<?= count($backlog); ?>';
+        var openpm = '<?= $scho ? count($scho) : 0; ?>',
+            closedpm = '<?= $close ? count($close) : 0; ?>',
+            backlog = '<?= $backlog ? count($backlog) : 0; ?>';
         var salesChartCCanvas = $("#sales-chart-x").get(0).getContext("2d");
         var salesChartC = new Chart(salesChartCCanvas, {
             type: 'pie',
