@@ -82,3 +82,6 @@ $routes->post('task/workordercm', 'Task::workordercm', ['filter' => 'login']);
 $routes->get('user/(:alphanum)', 'User::index/$1', ['filter' => 'user']);
 $routes->post('user/changepass', 'User::changepass', ['filter' => 'user']);
 $routes->post('user/edit', 'User::edit', ['filter' => 'user']);
+
+//email
+$routes->cli('email/sendbacklog', 'Email::sendbacklog');

@@ -14,6 +14,7 @@ class TaskModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = ['Taskid', 'Periode_id', 'Supervisor', 'Location_id', 'Sublocation_id', 'Approval1', 'ApprovalDate1', 'Approval2', 'ApprovalDate2', 'Equipment_id', 'Type_id', 'TaskType', 'NStart', 'NEnd', 'Priority', 'Status', 'Created', 'AssignTo', 'Duedate', 'Duration', 'Shift', 'Notes', 'Completed'];
 
+
     public function get_work_open($role = null)
     {
         $db = \Config\Database::connect();
@@ -27,6 +28,15 @@ class TaskModel extends Model
             $sql = 'select*from task t inner join equipment e on e.Equipmentid=t.Equipment_id inner join periodpm p on p.Periodid=t.Periode_id inner join
             maintcategory m on m.Maintcategoryid=t.TaskType where t.status=0';
         }
+        return $db->query($sql)->getResultArray();
+    }
+    public function get_foremail($role = null)
+    {
+        $date = date('Y-m-d');
+        $db = \Config\Database::connect();
+
+        $sql = "select e.Equipmentname,m.Categoryname,t.Duedate from task t inner join equipment e on e.Equipmentid=t.Equipment_id inner join periodpm p on p.Periodid=t.Periode_id inner join
+            maintcategory m on m.Maintcategoryid=t.TaskType where t.status=0 and t.Duedate < '$date'";
         return $db->query($sql)->getResultArray();
     }
     public function get_work_openbl($role = null)

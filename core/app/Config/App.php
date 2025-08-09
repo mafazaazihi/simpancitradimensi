@@ -16,13 +16,13 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = '';
-    public function __construct()
-    {
-        parent::__construct();
-        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https://' . $_SERVER['HTTP_HOST'] : 'http://' . $_SERVER['HTTP_HOST'];
-        $this->baseURL = rtrim($protocol . '/simpancitradimensi' . '/');
-    }
+    public string $baseURL = 'http://localhost/simpancitradimensi/';
+    // public function __construct()
+    // {
+    //     parent::__construct();
+    //     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https://' . $_SERVER['HTTP_HOST'] : 'http://' . $_SERVER['HTTP_HOST'];
+    //     $this->baseURL = rtrim($protocol . '/simpancitradimensi' . '/');
+    // }
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
