@@ -32,11 +32,20 @@ class TaskModel extends Model
     }
     public function get_foremail($role = null)
     {
-        $date = date('Y-m-d');
-        $db = \Config\Database::connect();
+        if ($role) {
 
-        $sql = "select e.Equipmentname,m.Categoryname,t.Duedate from task t inner join equipment e on e.Equipmentid=t.Equipment_id inner join periodpm p on p.Periodid=t.Periode_id inner join
-            maintcategory m on m.Maintcategoryid=t.TaskType where t.status=0 and t.Duedate < '$date'";
+            $date = future_date(curr_date(), $role);
+            $db = \Config\Database::connect();
+
+            $sql = "select e.Equipmentname,m.Categoryname,t.Duedate from task t inner join equipment e on e.Equipmentid=t.Equipment_id inner join periodpm p on p.Periodid=t.Periode_id inner join
+                maintcategory m on m.Maintcategoryid=t.TaskType where t.status=0 and t.Duedate = '$date'";
+        } else {
+            $date = date('Y-m-d');
+            $db = \Config\Database::connect();
+
+            $sql = "select e.Equipmentname,m.Categoryname,t.Duedate from task t inner join equipment e on e.Equipmentid=t.Equipment_id inner join periodpm p on p.Periodid=t.Periode_id inner join
+                maintcategory m on m.Maintcategoryid=t.TaskType where t.status=0 and t.Duedate < '$date'";
+        }
         return $db->query($sql)->getResultArray();
     }
     public function get_work_openbl($role = null)

@@ -85,3 +85,4 @@ $routes->post('user/edit', 'User::edit', ['filter' => 'user']);
 
 //email
 $routes->cli('email/sendbacklog', 'Email::sendbacklog');
+$routes->cli('email/sendupcoming/(:num)', 'Email::sendupcoming/$1');
