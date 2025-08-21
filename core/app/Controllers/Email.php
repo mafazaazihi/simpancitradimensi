@@ -16,6 +16,12 @@ class Email extends BaseController
     }
     public function sendbacklog()
     {
+        $spv = $this->user->whereIn('Role_id', [4, 3, 5])->findAll();
+        $spvs = "";
+        foreach ($spv as $key => $value) {
+            $spvs .= '"' . $value['Email'] . '",';
+        }
+        $spvs = rtrim($spvs, ",");
         $template = [
             'table_open' => '<table border="1" cellpadding="4" cellspacing="0">',
 
@@ -69,14 +75,24 @@ class Email extends BaseController
                 </html>';
         $email = service('email');
         $email->setFrom('system');
-        $email->setTo('mafazaazihi@gmail.com');
+        $email->setTo($spvs);
         $email->setSubject('Overdue task (Backlog) - ' . curr_date());
         $email->setMessage($html);
-        $email->send();
+        if (count($data) > 0) {
+            $email->send();
+        }
     }
 
     public function sendupcoming($day)
     {
+        $spv = $this->user->whereIn('Role_id', [4, 3, 5])->findAll();
+        $spvs = "";
+        foreach ($spv as $key => $value) {
+            $spvs .= '"' . $value['Email'] . '",';
+        }
+        $spvs = rtrim($spvs, ",");
+
+
         $template = [
             'table_open' => '<table border="1" cellpadding="4" cellspacing="0">',
 
@@ -129,10 +145,12 @@ class Email extends BaseController
                 </body>
                 </html>';
         $email = service('email');
-        $email->setFrom('system');
-        $email->setTo('mafazaazihi@gmail.com');
+        $email->setFrom('SIMPAN system');
+        $email->setTo($spvs);
         $email->setSubject('Upcoming task in ' . $day . ' Days - ' . curr_date());
         $email->setMessage($html);
-        $email->send();
+        if (count($data) > 0) {
+            $email->send();
+        }
     }
 }

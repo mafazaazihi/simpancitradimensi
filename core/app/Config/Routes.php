@@ -77,6 +77,8 @@ $routes->get('task/catalogs', 'Task::catalog', ['filter' => 'login']);
 $routes->post('task/', 'Task::index', ['filter' => 'login']);
 $routes->get('task/(:num)', 'Task::index/$1', ['filter' => 'login']);
 $routes->post('task/workordercm', 'Task::workordercm', ['filter' => 'login']);
+$routes->get('task/report', 'Task::report', ['filter' => 'login']);
+$routes->get('task/report/(:alphanum)', 'Task::report/$1', ['filter' => 'login']);
 
 //user
 $routes->get('user/(:alphanum)', 'User::index/$1', ['filter' => 'user']);

@@ -134,4 +134,11 @@ class Task extends BaseController
             return redirect_to('task');
         }
     }
+
+    public function report()
+    {
+        $data['title'] = 'Reports';
+        $data['prof'] = profile();
+        return render_templatex('task/report', $data);
+    }
 }
