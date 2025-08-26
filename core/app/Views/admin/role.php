@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <div class="col-sm flex-column">
                             <div class="text-end">
-                                <a class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="typcn typcn-plus"></i></a>
+                                <a class="btn btn-xs btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="typcn typcn-plus"></i></a>
                             </div>
                             <table class="table tabe-sm font-size-sm" id="table1">
                                 <thead>

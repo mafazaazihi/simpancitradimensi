@@ -10586,7 +10586,7 @@ progress {
 
 .form-control-sm {
   min-height: 2.25rem;
-  padding: 0.5rem 0.81rem;
+  padding: 0.3rem 0.2rem;
   font-size: 0.875rem;
   border-radius: var(--bs-border-radius-sm);
 }
@@ -21631,7 +21631,7 @@ code {
 /* Buttons */
 .btn, .ajax-upload-dragdrop .ajax-file-upload {
   font-size: 0.875rem;
-  line-height: 1;
+  line-height: .2;
   font-weight: 400;
   /* Buttons with only icons */
   /* Buttons with icon and text */
