@@ -26,10 +26,10 @@
                                                 <td><?= $m['Rolename']; ?></td>
                                                 <td>
                                                     <?php if ($m['Resetpass'] == 1): ?>
-                                                        <a href="<?= base_url('admin/users/') . $m['Userid']; ?>" class="btn btn-xs btn-danger typcn typcn-trash" title="Delete"></a>
+                                                        <?= deletebutton(current_url() . '/' . $m['Userid']); ?>
                                                         <a href="" class="btn btn-xs btn-warning typcn typcn-key" data-bs-toggle="modal" data-bs-target="#rpassModal" title="Request reset password active"></a>
                                                     <?php else: ?>
-                                                        <a href="<?= base_url('admin/users/') . $m['Userid']; ?>" class="btn btn-xs btn-danger typcn typcn-trash" title="Delete"></a>
+                                                        <?= deletebutton(current_url() . '/' . $m['Userid']); ?>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>

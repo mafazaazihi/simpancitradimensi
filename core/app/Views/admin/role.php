@@ -24,7 +24,7 @@
                                             <td><?= $m['Rolename']; ?></td>
                                             <td><?= $m['Defaultpage']; ?></td>
                                             <td class="icon">
-                                                <a href="" class="btn btn-xs btn-success typcn typcn-edit" title="edit" data-bs-toggle="modal" data-bs-target="#roleeditModal"></a>
+                                                <?= editbutton('#roleeditModal'); ?>
                                                 <a href="<?= base_url('admin/role/') . $m['Roleid']; ?>" title="Access" class="btn btn-xs btn-warning typcn typcn-lock-open-outline"></a>
                                             </td>
                                         </tr>

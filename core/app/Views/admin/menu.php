@@ -37,7 +37,10 @@
                                                     <tr id="<?= $m['Menuid']; ?>">
                                                         <td><?= $m['Menuname']; ?></td>
                                                         <td><i class="typcn <?= $m['Icon']; ?> icon-desktop"></i></td>
-                                                        <td><a href="" class="btn btn-xs btn-success typcn typcn-edit" data-bs-toggle="modal" title="Edit" data-bs-target="#editModal"></a></td>
+                                                        <td>
+                                                            <?= editbutton('#editModal'); ?>
+                                                            <?= deletebutton(current_url() . '/' . $m['Menuid']); ?>
+                                                        </td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
@@ -49,7 +52,7 @@
                                 <div class="row">
                                     <div class="col-sm flex-column">
                                         <div class="text-end">
-                                            <a class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="typcn typcn-plus"></i></a>
+                                            <a class="btn btn-xs btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="typcn typcn-plus"></i></a>
                                         </div>
                                         <table class="table tabe-sm font-size-sm" id="table2">
                                             <thead>
@@ -66,7 +69,10 @@
                                                         <td><?= $m['Tittle']; ?></td>
                                                         <td><?= $m['Menuname']; ?></td>
                                                         <td><?= $m['Url']; ?></td>
-                                                        <td><a href="" class="btn btn-xs btn-success typcn typcn-edit" data-bs-toggle="modal" title="Edit" data-bs-target="#editModal2"></a></td>
+                                                        <td>
+                                                            <?= editbutton('#editModal2'); ?>
+                                                            <?= deletebutton(current_url() . '/submenu/' . $m['Submenuid']); ?>
+                                                        </td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

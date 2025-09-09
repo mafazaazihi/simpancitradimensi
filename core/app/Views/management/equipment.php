@@ -40,7 +40,7 @@
                                                     <tr id="<?= $m['Equipmentid']; ?>">
                                                         <td><?= $m['Equipmentname']; ?></td>
                                                         <td><?= $m['Serialnumber']; ?></td>
-                                                        <td><a href="" class="btn btn-xs btn-info typcn typcn-info-large" data-bs-toggle="modal" title="Detail equipment" data-bs-target="#detaileqModal"></a></td>
+                                                        <td><?= infobutton('#detaileqModal'); ?></a></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
@@ -65,7 +65,7 @@
                                                 <?php foreach ($subloc as $m): ?>
                                                     <tr id="<?= $m['Sublocationid']; ?>">
                                                         <td><?= $m['Namesublocation']; ?></td>
-                                                        <td><a href="" class="btn btn-xs btn-info typcn typcn-info-large" data-bs-toggle="modal" title="Detail sub location" data-bs-target="#editModal2"></a></td>
+                                                        <td><?= infobutton('#editModal2'); ?></a></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
@@ -228,28 +228,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editModalLabel">Edit menu</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form action="<?= base_url('admin/menu'); ?>" method="post">
-                            <div class="modal-body">
-                                <input type="text" class="form-control" id="menuid" name="menuid" required hidden placeholder="name@example.com">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="emenuname" name="emenuname" required placeholder="name@example.com">
-                                    <label for="emenuname">Menu</label>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-secondary"><i class="typcn typcn-input-checked desktop-icon"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
             <div class="modal fade" id="editModal2" tabindex="-1" aria-labelledby="editModal2Label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
